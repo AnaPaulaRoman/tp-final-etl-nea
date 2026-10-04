@@ -161,9 +161,7 @@ def clasificar_region(destino):
     diccionario, devolvé config.REGION_POR_DEFECTO en lugar de romper.
     """
     # TODO 2 --------------------------------------------------------------
-    # Una sola línea. Pista: el método .get() de los diccionarios acepta
-    # un segundo argumento con el valor por defecto (lo viste en la Clase 3).
-    raise NotImplementedError("TODO 2: implementá clasificar_region()")
+    return config.REGIONES.get(destino, config.REGION_POR_DEFECTO)
     # ---------------------------------------------------------------------
 
 
