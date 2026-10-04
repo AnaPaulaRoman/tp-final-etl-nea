@@ -220,7 +220,11 @@ def calcular_variacion(actual, anterior):
     Devolvé None si 'anterior' es None o cero. Redondeá a 2 decimales.
     """
     # TODO 5 --------------------------------------------------------------
-    raise NotImplementedError("TODO 5: implementá calcular_variacion()")
+    if anterior is None or anterior == 0:
+        return None
+    
+    variacion = ((actual - anterior) / anterior) * 100
+    return round(variacion, 2)
     # ---------------------------------------------------------------------
 
 
