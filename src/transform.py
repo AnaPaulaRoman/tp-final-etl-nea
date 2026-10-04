@@ -236,17 +236,26 @@ def agregar_variacion_interanual(filas):
     observación de cada serie queda con None (no hay año anterior).
     """
     # TODO 6 --------------------------------------------------------------
-    # Estrategia recomendada (dos pasadas, sin ordenar nada):
-    #
-    #   1. Primera pasada: armá un diccionario 'indice' donde la clave sea
-    #      la tupla (provincia, destino, anio) y el valor sea valor_musd.
-    #
-    #   2. Segunda pasada: para cada fila, buscá en ese índice la clave
-    #      (provincia, destino, anio - 1). Si no está, .get() devuelve None
-    #      y calcular_variacion() ya sabe qué hacer con eso.
-    #
-    # Usar un dict como índice evita recorrer toda la lista por cada fila.
-    raise NotImplementedError("TODO 6: implementá agregar_variacion_interanual()")
+    # 1. Primera pasada: armamos el diccionario índice
+    indice = {}
+    for fila in filas:
+        clave = (fila["provincia"], fila["destino"], fila["anio"])
+        indice[clave] = fila["valor_musd"]
+
+    # 2. Segunda pasada: calculamos la variación interanual
+    for fila in filas:
+        provincia = fila["provincia"]
+        destino = fila["destino"]
+        anio_anterior = fila["anio"] - 1
+        
+        # Buscamos el valor del año anterior en el índice
+        clave_anterior = (provincia, destino, anio_anterior)
+        valor_anterior = indice.get(clave_anterior)
+        
+        # Calculamos la variación usando la función del TODO 5
+        fila["var_interanual_pct"] = calcular_variacion(fila["valor_musd"], valor_anterior)
+        
+    return filas
     # ---------------------------------------------------------------------
 
 
