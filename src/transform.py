@@ -316,11 +316,63 @@ def construir_indice_rubros(paquetes_rubro):
     indice = {}
 
     # TODO 8a -------------------------------------------------------------
-    # Pistas:
-    #   - Para el rubro con mayor valor:  max(dic, key=dic.get)
-    #   - El total del año es la suma de los 4 rubros: sum(dic.values())
-    #   - Descartá los valores None antes de sumar.
-    raise NotImplementedError("TODO 8a: implementá construir_indice_rubros()")
+    for paquete in paquetes_rubro:
+        provincia_val = paquete.get("provincia")
+        if not provincia_val:
+            continue
+        provincia = str(provincia_val).strip()
+
+        orden = paquete.get("orden_columnas", [])
+        filas_data = paquete.get("data", [])
+
+        for fila in filas_data:
+            if not fila or len(fila) == 0:
+                continue
+            
+            # El primer elemento es la fecha (ej: '2024-01-01')
+            fecha_str = str(fila[0])
+            try:
+                # Extraemos los primeros 4 caracteres para obtener el año numérico
+                anio = int(fecha_str[:4])
+            except (ValueError, TypeError):
+                continue
+
+            # Los valores numéricos de los rubros vienen a partir del índice 1
+            valores = fila[1:]
+            
+            rubros = {}
+            for col_nombre, val in zip(orden, valores):
+                if val is not None:
+                    try:
+                        rubros[str(col_nombre).strip()] = float(val)
+                    except (ValueError, TypeError):
+                        continue
+
+            if not rubros:
+                continue
+
+            # 1. Rubro con mayor valor ese año
+            rubro_principal = max(rubros, key=rubros.get)
+
+            # 2. Total del año sumando los rubros
+            total_anio = sum(rubros.values())
+
+            # 3. Porcentaje de Productos Primarios
+            pp_valor = 0
+            for r_key, r_val in rubros.items():
+                if "primario" in r_key.lower():
+                    pp_valor = r_val
+                    break
+
+            if total_anio > 0:
+                pp_participacion_pct = round((pp_valor / total_anio) * 100, 2)
+            else:
+                pp_participacion_pct = 0.0
+
+            indice[(provincia, anio)] = {
+                "rubro_principal": rubro_principal,
+                "pp_participacion_pct": pp_participacion_pct
+            }
     # ---------------------------------------------------------------------
 
     logging.info("  índice de rubros: %s claves (provincia, año)", len(indice))
@@ -336,9 +388,18 @@ def unir_con_rubros(filas, indice_rubros):
     CONTRATO: modifica y devuelve la misma lista de filas.
     """
     # TODO 8b -------------------------------------------------------------
-    # Para cada fila, buscá indice_rubros.get((provincia, anio)) y asigná
-    # 'rubro_principal' y 'pp_participacion_pct'. Si no hay match, None.
-    raise NotImplementedError("TODO 8b: implementá unir_con_rubros()")
+    for fila in filas:
+        clave = (fila.get("provincia"), fila.get("anio"))
+        datos_rubro = indice_rubros.get(clave)
+        
+        if datos_rubro:
+            fila["rubro_principal"] = datos_rubro["rubro_principal"]
+            fila["pp_participacion_pct"] = datos_rubro["pp_participacion_pct"]
+        else:
+            fila["rubro_principal"] = None
+            fila["pp_participacion_pct"] = None
+            
+    return filas
     # ---------------------------------------------------------------------
 
 
