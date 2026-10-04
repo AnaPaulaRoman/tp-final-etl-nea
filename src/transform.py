@@ -186,7 +186,11 @@ def calcular_participacion(valor, total):
     Redondeá a 2 decimales.
     """
     # TODO 4 --------------------------------------------------------------
-    raise NotImplementedError("TODO 4: implementá calcular_participacion()")
+    if total is None or total == 0:
+        return None
+    
+    porcentaje = (valor / total) * 100
+    return round(porcentaje, 2)
     # ---------------------------------------------------------------------
 
 
