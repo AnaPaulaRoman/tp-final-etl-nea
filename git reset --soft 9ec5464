@@ -1,0 +1,22 @@
+[33mc4364c4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to c4364c4
+[33mc4364c4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{1}: reset: moving to c4364c4
+[33m9ec5464[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{2}: commit: Implementa agregar_ranking (TODO 7)
+[33m1ce2a08[m HEAD@{3}: commit: Implementa agregar_variacion_interanual (TODO 6)
+[33m1ef4ad7[m HEAD@{4}: commit: Implementa calcular_variacion (TODO 5)
+[33maf12658[m HEAD@{5}: commit: Implementa calcular_participacion (TODO 4)
+[33m8616a8e[m HEAD@{6}: commit: Implementa calcular_decada (TODO 3)
+[33m3399ac8[m HEAD@{7}: commit: Implementa ancho_a_largo y clasificar_region (TODO 1 y 2)
+[33mc4364c4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{8}: reset: moving to c4364c4
+[33m3ec3b4e[m HEAD@{9}: commit: Implementa calcular_variacion (TODO 5)
+[33md0f0cae[m HEAD@{10}: reset: moving to d0f0cae
+[33m32de974[m HEAD@{11}: commit: Implementa hasta TODO 7: ancho a largo, derivadas, variaciones y ranking
+[33mc54dee4[m HEAD@{12}: commit: Implementa calcular_participacion (TODO 4)
+[33md0f0cae[m HEAD@{13}: reset: moving to d0f0cae
+[33mcbfc9db[m HEAD@{14}: commit: Implementa agregar_variacion_interanual (TODO 6)
+[33mf86dae1[m HEAD@{15}: commit: Implementa calcular_variacion (TODO 5)
+[33md0f0cae[m HEAD@{16}: commit: Corrige el mapeo de columnas y valores en ancho_a_largo (TODO 1)
+[33m35d75e5[m HEAD@{17}: commit: Implementa calcular_decada (TODO 3)
+[33me2cbac0[m HEAD@{18}: commit: Implementa clasificar_region (TODO 2)
+[33mdbd3344[m HEAD@{19}: commit: Implementa ancho_a_largo: pasa los datos a formato largo
+[33mc4364c4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{20}: Branch: renamed refs/heads/master to refs/heads/main
+[33mc4364c4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{22}: commit (initial): Punto de partida: template del TP final
